@@ -1,0 +1,16 @@
+---
+- name: Configurer Git
+  hosts: localhost
+  become: yes
+  tasks:
+
+    - name: Configurer le username
+      git_config:
+        name: user.name
+        value: "RBen19"
+
+    - name: Configurer le mail
+      git_config:
+        name: user.email
+        value: "bonmerciel@gmail.com"
+

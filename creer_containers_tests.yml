@@ -1,0 +1,60 @@
+---
+- name: Creer Des Containers Tests pour Jenkins, Sonarqube, Nexus ,Artifactory
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Creer le Container Jenkins
+      docker_container:
+        name:  testJenkins
+        image: jenkins/jenkins
+        state: started
+        ports:
+          - "8080:8080"
+
+    - name: Creer le Container Sonarqube
+      docker_container:
+        name: testSonarqube
+        image: sonarqube
+        state: started
+        ports:
+          - "9000:9000"
+    - name: Creer le conatainer Nexus
+      docker_container:
+        name: testNexus
+        image: sonatype/nexus3
+        state: started
+        ports:
+          - "8081:8081"
+    - name: Creer le container Artifactory
+      docker_container:
+        name: testArtifactory
+        image: releases-docker.jfrog.io/jfrog/artifactory-oss:6.23.42
+        state: started
+        ports:
+          - "5000:8081"
+
+    - name: Pause avant suppression des containers Tests
+      pause:
+        prompt: "appuyez sur entrer pour supprimer les containers"
+
+    - name: Suppresion du container Jenkins
+      docker_container:
+        name: testJenkins
+        state: absent
+
+    - name: Suppresion du container Sonarqube
+      docker_container:
+        name: testSonarqube
+        state: absent
+
+    - name: Suppression du container Nexus
+      docker_container:
+        name: testNexus
+        state: absent
+
+    - name: Suppresion du container Artifactory
+      docker_container:
+        name: testArtifactory
+        state: absent
+
