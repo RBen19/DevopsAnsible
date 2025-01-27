@@ -51,7 +51,8 @@ Lancez le playbook creer_containers_tests.yml avec la commande suivante : ```ans
 
 ### 8. Vérification de la création des containers
      ####Pour Windows :
-      1. Avant tout, vous devrez connaître l'adresse IP privée de votre WSL2. Pour ce faire, exécutez : ip a ; Prenez l'IP sous eth0 (##par exemple, 172.19.8.220/20).
+      1. Avant tout, vous devrez connaître l'adresse IP privée de votre WSL2. Pour ce faire, exécutez : ip a ;
+      Prenez l'IP sous eth0 (##par exemple, 172.19.8.220/20).
       2. Récupérez cette adresse IP et ouvrez votre navigateur (pensez à vider votre cache).
       3.Pour afficher l'interface Jenkins par défaut, entrez l'URL suivante dans votre navigateur : 172.19.8.220:8080
       4.Pour afficher l'interface Sonarqube par défaut, entrez l'URL suivante dans votre navigateur : 172.19.8.220:9000
