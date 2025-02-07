@@ -1,0 +1,48 @@
+---
+- name: Installer docker
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Installer les dépendances necessaires et mettre à jour le cache
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: latest
+        update_cache: true
+
+    - name: Ajouter la clé de docker 
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Ajouter le repo de docker au source liste
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Mettre à jour les paquets
+      apt:
+        update_cache: yes
+
+    - name: Installer Docker, Docker CLI, Docker Compose
+      apt:
+        name:
+          - docker-ce           
+          - docker-ce-cli       
+          - containerd.io       
+          - docker-compose    
+        state: present
+        update_cache: yes
+
+    - name: Verifier la version de docker
+      command: docker --version
+      register: docker_version
+
+    - name: Afficher la version
+      debug:
+        msg: " votre version de docker est {{docker_version.stdout}}"
+

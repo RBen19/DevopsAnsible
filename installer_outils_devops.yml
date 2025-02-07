@@ -1,0 +1,51 @@
+---
+- name: Installer les images docker de Jenkins,SonarQube,Nexus,Artifactory
+  hosts: localhost
+  become: yes
+
+  tasks:
+
+    - name: Installer l'image docker de jenkins
+      docker_image:
+        name: jenkins/jenkins
+        source: pull
+
+    - name: Installer l'image docker de sonarqube
+      docker_image:
+        name: sonarqube
+        source: pull
+
+    - name: Installer l'image docker de Nexus
+      docker_image:
+        name: sonatype/nexus3
+        source: pull
+
+    - name: Installer l'image docker de Artifactory version 6.23.42
+      docker_image:
+        name: releases-docker.jfrog.io/jfrog/artifactory-oss:6.23.42
+        source: pull
+
+    - name: Installer l'image docker de terraform
+      docker_image:
+        name: hashicorp/terraform
+        source: pull
+
+    - name: Installer l'image docker de Grafana
+      docker_image:
+        name: grafana/grafana
+        source: pull
+
+    - name: Installer l'image dokcer de selenium( selenium hub)
+      docker_image:
+        name: selenium/hub
+        source: pull
+
+
+    - name: Verifier les images installées
+      command: docker images
+      register: docker_images
+
+    - name: Afficher les images
+      debug:
+        msg: " vos images docker installées sont :{{docker_images.stdout}}"
+
