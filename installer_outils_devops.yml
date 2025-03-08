@@ -25,8 +25,6 @@
         name: releases-docker.jfrog.io/jfrog/artifactory-oss:6.23.42
         source: pull
 
-<<<<<<< HEAD
-=======
     - name: Installer l'image docker de terraform
       docker_image:
         name: hashicorp/terraform
@@ -42,7 +40,6 @@
         name: selenium/hub
         source: pull
 
->>>>>>> develop
 
     - name: Verifier les images installées
       command: docker images
