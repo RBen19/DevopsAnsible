@@ -33,12 +33,9 @@
         state: started
         ports:
           - "5000:8081"
-<<<<<<< HEAD
-=======
     - name: Liste des ports sur lesquels sont lancés les containers
       debug:
         msg: "Jenkins est lancé sur le port 8080; Sonarqube sur le 9000 ; Nexus sur le 8081 et artifactory sur le 5000"
->>>>>>> develop
 
     - name: Pause avant suppression des containers Tests
       pause:
